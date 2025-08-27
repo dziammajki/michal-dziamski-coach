@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Mail, Phone } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface ContactButtonProps {
   variant?: "default" | "secondary";
@@ -9,8 +10,10 @@ interface ContactButtonProps {
 }
 
 const ContactButton = ({ variant = "default", size = "default", className, children }: ContactButtonProps) => {
-  const handleEmailClick = () => {
-    window.location.href = "mailto:m_dz@o2.pl";
+  const navigate = useNavigate();
+
+  const handleFormClick = () => {
+    navigate("/formularz-kontaktowy");
   };
 
   const handlePhoneClick = () => {
@@ -20,13 +23,13 @@ const ContactButton = ({ variant = "default", size = "default", className, child
   return (
     <div className="flex flex-col sm:flex-row gap-3">
       <Button
-        onClick={handleEmailClick}
+        onClick={handleFormClick}
         variant={variant}
         size={size}
         className={className}
       >
         <Mail className="w-4 h-4 mr-2" />
-        {children || "Wyślij e-mail"}
+        {children || "Napisz wiadomość"}
       </Button>
       <Button
         onClick={handlePhoneClick}
